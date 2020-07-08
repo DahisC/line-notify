@@ -32,7 +32,7 @@ const checkParameters = (parameters) => {
 
 //
 
-module.exports = ({ state = 'default', ...parameters }) => {
+exports.initLineNotify = ({ state = 'default', ...parameters }) => {
   try {
     checkParameters(parameters);
   } catch (err) {
@@ -100,4 +100,16 @@ module.exports = ({ state = 'default', ...parameters }) => {
   });
 
   return router;
+};
+
+exports.status = () => {
+  return axios.get('https://notify-api.line.me/api/status');
+};
+
+exports.revoke = (access_token) => {
+  return axios.post('https://notify-api.line.me/api/revoke');
+};
+
+exports.notify = (access_token) => {
+  return axios.post('https://notify-api.line.me/api/notify');
 };
